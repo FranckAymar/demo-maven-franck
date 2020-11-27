@@ -3,9 +3,4 @@ COPY pom.xml /tmp/
 COPY src /tmp/src/
 WORKDIR /tmp/
 RUN mvn package
-
-FROM tomcat
-COPY --from=MAVEN_TOOL_CHAIN /tmp/target/*.war $CATALINA_HOME/webapps/
-CMD ["sed -i -e \"s/8080/$PORT/\" /usr/local/tomcat/conf/server.xml","catalina.sh", "run"]
-
-
+CMD java $JAVA_OPTS -jar target/dependency/webapp-runner.jar --port $PORT target/*.war
