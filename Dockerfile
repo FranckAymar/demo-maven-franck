@@ -3,4 +3,4 @@ COPY pom.xml /tmp/
 COPY src /tmp/src/
 WORKDIR /tmp/
 RUN mvn package
-#CMD java $JAVA_OPTS -jar target/dependency/webapp-#runner.jar --port $PORT target/*.war
+CMD java $JAVA_OPTS -jar /target/dependency/webapp-runner.jar --port $PORT /target/*.war
